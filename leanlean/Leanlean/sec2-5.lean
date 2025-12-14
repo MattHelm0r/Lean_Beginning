@@ -44,13 +44,19 @@ example (x y : β) : x ⊓ y = y ⊓ x := by
 
 example : x ⊓ y ⊓ z = x ⊓ (y ⊓ z) := by
   apply le_antisymm
-  ·
+  · apply le_inf
+    · exact le_trans inf_le_left inf_le_left
+
 
 example : x ⊔ y = y ⊔ x := by
   apply le_antisymm
-  · apply le_sup
-    · exact sup_le_right
-    exact sup_
+  · apply sup_le
+    · exact le_sup_right
+    · exact le_sup_left
+  · apply sup_le
+    · exact le_sup_right
+    · exact le_sup_left
+
 
 example : x ⊔ y ⊔ z = x ⊔ (y ⊔ z) := by
   apply sup_assoc
